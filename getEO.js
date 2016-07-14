@@ -1,5 +1,5 @@
-var startDate = new Date('2016-06-27');
-var endDate = new Date('2016-07-03');
+var startDate = new Date('2016-07-04');
+var endDate = new Date('2016-07-10');
 
 var curDate = endDate;
 var orderMap = [];
