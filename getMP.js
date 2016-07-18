@@ -2,19 +2,33 @@ var targetDay = getTheNextNDate(1,new Date(),'YYYY-MM-DD');
 var now = new Date(format('YYYY-MM-DD', new Date()) + ' 15:00:00')
 console.log('抢 ' + targetDay + ' at ' + now)
 var promotionAreas = {};
-$.get('http://waimaieapp.meituan.com/ad/v1/buy/getPromotionArea?_=' + (now - 0), function(res){
-  var pList = res.data.promotionAreas;
-  for (var i = 0; i < pList.length; i++) {
-    promotionAreas[pList[i].id] = pList[i].positionInfo;
-  }
-  
-  getPArea(24296);  // 研发园
-  // getPArea(24297);  // 
-  // getPArea(24299);  //
-  getPArea(24301);  // soho
-  // getPArea(24593);  // 电子城下
-  // getPArea(24594);  // 电子城上
-});
+
+var timeTicket;
+var hasGet = {
+  24301: false,
+  24296: false,
+  24593: false,
+  24594: false
+};
+function goFresh () {
+  $.get('http://waimaieapp.meituan.com/ad/v1/buy/getPromotionArea?_=' + (now - 0), function(res){
+    if (res.msg != 'Success' || !res.data || !res.data.promotionAreas.length) {
+      return;
+    }
+    clearInterval(timeTicket);
+    var pList = res.data.promotionAreas;
+    for (var i = 0; i < pList.length; i++) {
+      promotionAreas[pList[i].id] = pList[i].positionInfo;
+    }
+    !hasGet[24301] && getPArea(24301);  // soho
+    !hasGet[24296] && getPArea(24296);  // 研发园
+    // getPArea(24297);  // 
+    // getPArea(24299);  //
+    // !hasGet[24593] && getPArea(24593);  // 电子城下
+    // !hasGet[24594] && getPArea(24594);  // 电子城上
+  });
+}
+timeTicket = setInterval(goFresh, 200);
 
 
 //adSpreadArea:[[{"y":116504769,"x":39981020},{"y":116505944,"x":39981983},{"y":116505100,"x":39984245},{"y":116504769,"x":39984245},{"y":116504769,"x":39981020}]],
@@ -36,6 +50,7 @@ function getPArea(id) {
     }
   }
   if (tarPos) {
+    hasGet[id] = true;
     $.ajax({
       type: "POST",     //提交方式
       url: 'http://waimaieapp.meituan.com/ad/v1/buy/buyPromotionArea',
@@ -50,10 +65,14 @@ function getPArea(id) {
         orderFrom:2
       },
       success: function (res) { //如果执行成功，那么执行此方法
-        console.log(res)
+        console.log(res);
+        if (res.data.msg != "Success") {
+          hasGet[id] = false;
+        }
       },
       error: function (err) { //如果执行不成功，那么执行此方法
-        console.log(err)
+        console.log(err);
+        hasGet[id] = false;
       }
     });
   }
