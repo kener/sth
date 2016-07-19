@@ -5,31 +5,38 @@ var promotionAreas = {};
 
 var timeTicket;
 var hasGet = {
-  24301: false,
+  24295: false,
   24296: false,
+  24297: false,
+  24298: false,
+  24299: false,
+  24301: false,
   24593: false,
   24594: false
 };
 function goFresh () {
-  $.get('http://waimaieapp.meituan.com/ad/v1/buy/getPromotionArea?_=' + (now - 0), function(res){
+  $.get('http://waimaieapp.meituan.com/ad/v1/buy/getPromotionArea?_=' + (now - 0), function(res){console.log(res);return;
     if (res.msg != 'Success' || !res.data || !res.data.promotionAreas.length) {
+      goFresh();
       return;
     }
-    clearInterval(timeTicket);
+    // clearInterval(timeTicket);
     var pList = res.data.promotionAreas;
     for (var i = 0; i < pList.length; i++) {
       promotionAreas[pList[i].id] = pList[i].positionInfo;
     }
-    !hasGet[24301] && getPArea(24301);  // soho
-    !hasGet[24296] && getPArea(24296);  // 研发园
-    // getPArea(24297);  // 
-    // getPArea(24299);  //
+    !hasGet[24296] && getPArea(24296);  // soho
+    !hasGet[24295] && getPArea(24295);  // ？
+    !hasGet[24297] && getPArea(24297);  // ？
+    !hasGet[24298] && getPArea(24298);  // ？
+    !hasGet[24299] && getPArea(24299);  // 南湖
+    // !hasGet[24301] && getPArea(24301);  // 酒仙桥
     // !hasGet[24593] && getPArea(24593);  // 电子城下
     // !hasGet[24594] && getPArea(24594);  // 电子城上
   });
 }
-timeTicket = setInterval(goFresh, 200);
-
+// timeTicket = setInterval(goFresh, 250);
+goFresh()
 
 //adSpreadArea:[[{"y":116504769,"x":39981020},{"y":116505944,"x":39981983},{"y":116505100,"x":39984245},{"y":116504769,"x":39984245},{"y":116504769,"x":39981020}]],
 
