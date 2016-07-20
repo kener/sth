@@ -1,5 +1,5 @@
-var startDate = new Date('2016-07-04');
-var endDate = new Date('2016-07-10');
+var startDate = new Date('2016-07-11');
+var endDate = new Date('2016-07-17');
 
 var curDate = endDate;
 var orderMap = [];
@@ -208,7 +208,7 @@ function joinProductsResult(data) {
   var pContent;
   var name;
   for (var i = 0; i < products.length; i++) {
-    if (products[i].name.search(/(商务|一人餐)/) != -1) {
+    if (products[i].name.search(/(商务|一人餐|免费饮料)/) != -1) {
       // 规格，套餐
       getAttrsResult(products[i], tpl);
     }
@@ -231,31 +231,63 @@ function joinProductsResult(data) {
 var packageMap = {
   '商务套餐A': {
     '意大利香草烤鸡': [
-                      {name: '意大利香草烤鸡', price: 22 * 32 / 34},
-                      {name: '彩色时蔬', price: 9 * 32 / 34},
-                      {name: '米饭', price: 3 * 32 / 34}
+                      {name: '意大利香草烤鸡', price: 21.9 * 31.9 / 34.7},
+                      {name: '彩色时蔬', price: 8.9 * 31.9 / 34.7},
+                      {name: '米饭', price: 3.9 * 31.9 / 34.7}
                     ],
     '法兰西奶油白葡萄酒烩鸡肉': [
-                      {name: '法兰西奶油白葡萄酒烩鸡肉', price: 24 * 34 / 36},
-                      {name: '彩色时蔬', price: 9 * 34 / 36},
-                      {name: '米饭', price: 3 * 34 / 36}
+                      {name: '法兰西奶油白葡萄酒烩鸡肉', price: 23.9 * 33.9 / 36.7},
+                      {name: '彩色时蔬', price: 8.9 * 33.9 / 36.7},
+                      {name: '米饭', price: 3.9 * 33.9 / 36.7}
                     ],
     '马来西亚黄咖喱鸡': [
-                      {name: '马来西亚黄咖喱鸡', price: 26 * 36 / 38},
-                      {name: '彩色时蔬', price: 9 * 36 / 38},
-                      {name: '米饭', price: 3 * 36 / 38}
+                      {name: '马来西亚黄咖喱鸡', price: 25.9 * 35.9 / 38.7},
+                      {name: '彩色时蔬', price: 8.9 * 35.9 / 38.7},
+                      {name: '米饭', price: 3.9 * 35.9 / 38.7}
                     ]
   },
   '商务套餐B': {
     '匈牙利古拉什烩牛肉': [
-                      {name: '匈牙利古拉什烩牛肉', price: 31 * 40 / 42},
-                      {name: '清炒西兰花', price: 8 * 40 / 42},
-                      {name: '米饭', price: 3 * 40 / 42}
+                      {name: '匈牙利古拉什烩牛肉', price: 30.9 * 39.9 / 42.7},
+                      {name: '清炒西兰花', price: 7.9 * 39.9 / 42.7},
+                      {name: '米饭', price: 3.9 * 39.9 / 42.7}
                     ],
     '新加坡浓香咖喱虾': [
-                      {name: '新加坡浓香咖喱虾', price: 33 * 42 / 44},
-                      {name: '清炒西兰花', price: 8 * 42 / 44},
-                      {name: '米饭', price: 3 * 42 / 44}
+                      {name: '新加坡浓香咖喱虾', price: 32.9 * 41.9 / 44.7},
+                      {name: '清炒西兰花', price: 7.9 * 41.9 / 44.7},
+                      {name: '米饭', price: 3.9 * 41.9 / 44.7}
+                    ]
+  },
+  '免费饮料百搭套餐': {
+    '意大利香草烤鸡': [
+                      {name: '意大利香草烤鸡', price: 21.9 * 34.8 / 39.7},
+                      {name: '米饭', price: 3.9 * 34.9 / 39.7},
+                      {name: '配菜', price: 8.9 * 34.9 / 39.7},
+                      {name: '饮料', price: 5 * 34.9 / 39.7}
+                    ],
+    '法兰西奶油白葡萄酒烩鸡肉': [
+                      {name: '法兰西奶油白葡萄酒烩鸡肉', price: 23.9 * 36.8 / 41.7},
+                      {name: '米饭', price: 3.9 * 36.8 / 41.7},
+                      {name: '配菜', price: 8.9 * 36.8 / 41.7},
+                      {name: '饮料', price: 5 * 36.8 / 41.7}
+                    ],
+    '马来西亚黄咖喱鸡': [
+                      {name: '马来西亚黄咖喱鸡', price: 25.9 * 38.8 / 43.7},
+                      {name: '米饭', price: 3.9 * 38.8 / 43.7},
+                      {name: '配菜', price: 8.9 * 38.8 / 43.7},
+                      {name: '饮料', price: 5 * 38.8 / 43.7}
+                    ],
+    '匈牙利古拉什烩牛肉': [
+                      {name: '匈牙利古拉什烩牛肉', price: 30.9 * 43.8 / 47.7},
+                      {name: '米饭', price: 3.9 * 43.8 / 47.7},
+                      {name: '配菜', price: 8.9 * 43.8 / 47.7},
+                      {name: '饮料', price: 5 * 43.8 / 47.7}
+                    ],
+    '新加坡浓香咖喱虾': [
+                      {name: '新加坡浓香咖喱虾', price: 32.9 * 45.8 / 49.7},
+                      {name: '米饭', price: 3.9 * 45.8 / 49.7},
+                      {name: '配菜', price: 8.9 * 45.8 / 49.7},
+                      {name: '饮料', price: 5 * 45.8 / 49.7}
                     ]
   },
   '防反帝蓝衣军团一人餐': [
@@ -281,16 +313,27 @@ var packageMap = {
   ]
 }
 
+var randomIdx = Math.round(Math.random()*100);
+var randomIdx2 = Math.round(Math.random()*100);
 function  getAttrsResult (product, tpl) {
   var aContent = '';
   
   var name = reformName(product.name);
   var list;
+  var optionName;
   if (name.search(/[AB]/) != -1) {
-    var optionName = name.replace(/(商务套餐|A| |B|-)/g,''); //商务套餐B-匈牙利古拉什烩牛肉
+    optionName = name.replace(/(商务套餐|A| |B|-)/g,''); //商务套餐B-匈牙利古拉什烩牛肉
     name = name.replace(/-.*/g,'');
 
     list = packageMap[name][optionName];
+  }
+  else if (name.search(/免费饮料/) != -1) {
+    optionName = name.replace(/(免费饮料百搭套餐| )/g,'')
+    name = name.replace(/-.*/g,'');
+    
+    list = packageMap[name][optionName];
+    list[2].name = ['清炒西兰花', '彩色时蔬', '什锦烩蔬菜'][randomIdx++ % 3];
+    list[3].name = ['屈臣氏香草味苏打水', '怡泉+C柠檬味汽水', '健怡可乐', 'DReena特丽娜果肉饮料'][randomIdx2++ % 4];
   }
   else {
     list = packageMap[name];

@@ -272,21 +272,18 @@ function  getAttrsResult (product, tpl) {
   var list;
   var optionName;
   if (name.search(/[AB]/) != -1) {
-    // console.log(name)
     optionName = name.replace(/(商务套餐|A| |B|)/g,'').replace(/[)(]/g,'')
     name = name.replace(/\(.*\)/g,'').replace(/ /g, '');
-    // console.log(name, '--', optionName);
+
     list = packageMap[name][optionName];
   }
   else if (name.search(/免费饮料/) != -1) {
     optionName = name.replace(/(免费饮料百搭套餐| )/g,'').replace(/[)(]/g,'')
     name = name.replace(/\(.*\)/g,'').replace(/ /g, '');
-    // console.log(name, '--', optionName);
+    
     list = packageMap[name][optionName];
-    // console.log('[' + name + '-' + optionName + ']', list);
     list[2].name = ['清炒西兰花', '彩色时蔬', '什锦烩蔬菜'][randomIdx++ % 3];
     list[3].name = ['屈臣氏香草味苏打水', '怡泉+C柠檬味汽水', '健怡可乐', 'DReena特丽娜果肉饮料'][randomIdx2++ % 4];
-    console.log(list[2].name, list[3].name);
   }
   else {
     list = packageMap[name];
