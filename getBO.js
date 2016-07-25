@@ -1,5 +1,5 @@
-var startDate = new Date('2016-07-11');
-var endDate = new Date('2016-07-17');
+var startDate = new Date('2016-07-18');
+var endDate = new Date('2016-07-23');
 
 var orderList = [];   // 订单数据
 var curDate = startDate;

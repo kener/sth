@@ -47,10 +47,10 @@ function goFresh () {
     for (var i = 0; i < pList.length; i++) {
       promotionAreas[pList[i].id] = pList[i].positionInfo;
     }
-    !hasGet[24296] && getPArea(24296);  // soho
     !hasGet[24297] && getPArea(24297);  // 研发园
+    !hasGet[24296] && getPArea(24296);  // soho
+    // !hasGet[24299] && getPArea(24299);  // 南湖
     // !hasGet[24298] && getPArea(24298);  // 东湖湾
-    !hasGet[24299] && getPArea(24299);  // 南湖
     // !hasGet[24301] && getPArea(24301);  // 酒仙桥
     // !hasGet[24302] && getPArea(24302);  // 央美
     // !hasGet[24593] && getPArea(24593);  // 电子城下
@@ -69,7 +69,7 @@ function getPArea(id) {
   }
   var tarPos = false;
   for (var i = 0; i < posList.length; i++) {
-    if (posList[i].ableBuy && posList[i].position > 5) {// 明天只买10名开外
+    if (posList[i].ableBuy) {// 明天只买10名开外 && posList[i].position > 5
       console.log('【find】 ' + id + ' position:' + posList[i].position + ' price:' + posList[i].price);
       tarPos = posList[i];
       break;

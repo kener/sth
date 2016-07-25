@@ -1,5 +1,5 @@
 var startDate = new Date('2016-07-11');
-var endDate = new Date('2016-07-17');
+var endDate = new Date('2016-07-23');
 
 var curDate = endDate;
 var orderMap = [];
@@ -318,24 +318,25 @@ var randomIdx2 = Math.round(Math.random()*100);
 function  getAttrsResult (product, tpl) {
   var aContent = '';
   
-  var name = reformName(product.name);
+  var name = product.name;
   var list;
   var optionName;
   if (name.search(/[AB]/) != -1) {
-    optionName = name.replace(/(商务套餐|A| |B|-)/g,''); //商务套餐B-匈牙利古拉什烩牛肉
-    name = name.replace(/-.*/g,'');
+    optionName = reformName(name.replace(/(商务套餐|A| |B|-)/g,'')); //商务套餐B-匈牙利古拉什烩牛肉
+    name = reformName(name.replace(/-.*/g,''));
 
     list = packageMap[name][optionName];
   }
   else if (name.search(/免费饮料/) != -1) {
-    optionName = name.replace(/(免费饮料百搭套餐| )/g,'')
-    name = name.replace(/-.*/g,'');
-    
+    optionName = reformName(name.replace(/(免费饮料百搭套餐| |-)/g,''));
+    name = reformName(name.replace(/-.*/g,''));
+
     list = packageMap[name][optionName];
     list[2].name = ['清炒西兰花', '彩色时蔬', '什锦烩蔬菜'][randomIdx++ % 3];
     list[3].name = ['屈臣氏香草味苏打水', '怡泉+C柠檬味汽水', '健怡可乐', 'DReena特丽娜果肉饮料'][randomIdx2++ % 4];
   }
   else {
+    name = reformName(name);
     list = packageMap[name];
   }
 
