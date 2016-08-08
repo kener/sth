@@ -1,5 +1,5 @@
-var startDate = new Date('2016-07-11');
-var endDate = new Date('2016-07-23');
+var startDate = new Date('2016-08-01');
+var endDate = new Date('2016-08-07');
 
 var curDate = endDate;
 var orderMap = [];
@@ -290,6 +290,35 @@ var packageMap = {
                       {name: '饮料', price: 5 * 45.8 / 49.7}
                     ]
   },
+  '完美素食主义套餐': [
+    {name: '配汤', price: 8.9 * 26.5 / 29.6},
+    {name: '配菜', price: 7.9 * 26.5 / 29.6},
+    {name: '彩色时蔬', price: 8.9 * 26.5 / 29.6},
+    {name: '米饭', price: 3.9 * 26.5 / 29.6}
+  ],
+  '素食主义套餐': [
+    {name: '配菜', price: 7.9 * 26.5 / 29.6},
+    {name: '彩色时蔬', price: 8.9 * 26.5 / 29.6},
+    {name: '米饭', price: 3.9 * 26.5 / 29.6}
+  ],
+  '马来西亚黄咖喱鸡套餐': [
+    {name: '马来西亚黄咖喱鸡', price: 24.9 * 42.5 / 45.6},
+    {name: '米饭', price: 3.9 * 42.5 / 45.6},
+    {name: '配菜', price: 8.9 * 42.5 / 45.6},
+    {name: '配汤', price: 7.9 * 42.5 / 45.6}
+  ],
+  '匈牙利古拉什烩牛肉套餐': [
+    {name: '匈牙利古拉什烩牛肉', price: 30.9 * 49.5 / 51.6},
+    {name: '米饭', price: 3.9 * 49.5 / 51.6},
+    {name: '配菜', price: 8.9 * 49.5 / 51.6},
+    {name: '配汤', price: 7.9 * 49.5 / 51.6},
+  ],
+  '新加坡浓香咖喱虾套餐': [
+    {name: '新加坡浓香咖喱虾', price: 30.9 * 49.5 / 51.6},
+    {name: '米饭', price: 3.9 * 49.5 / 51.6},
+    {name: '配菜', price: 8.9 * 49.5 / 51.6},
+    {name: '配汤', price: 7.9 * 49.5 / 51.6}
+  ],
   '防反帝蓝衣军团一人餐': [
     {name: '欧式传统松仁南瓜汤', price: 11 * 50 / 50},
     {name: '意大利香草烤鸡', price: 22 * 50 / 50},
@@ -335,9 +364,22 @@ function  getAttrsResult (product, tpl) {
     list[2].name = ['清炒西兰花', '彩色时蔬', '什锦烩蔬菜'][randomIdx++ % 3];
     list[3].name = ['屈臣氏香草味苏打水', '怡泉+C柠檬味汽水', '健怡可乐', 'DReena特丽娜果肉饮料'][randomIdx2++ % 4];
   }
+  else if (name.search(/完美素食主义套餐/) != -1) {
+    name = reformName(name);
+    list = packageMap[name];
+    list[0].name = ['法兰西经典奶油蘑菇汤', '欧式传统松仁南瓜汤'][randomIdx++ % 2];
+    list[1].name = ['清炒西兰花', '什锦烩蔬菜'][randomIdx2++ % 2];
+  }
+  else if (name.search(/素食主义套餐/) != -1) {
+    name = reformName(name);
+    list = packageMap[name];
+    list[0].name = ['清炒西兰花', '什锦烩蔬菜'][randomIdx2++ % 2];
+  }
   else {
     name = reformName(name);
     list = packageMap[name];
+    list[2].name = ['清炒西兰花', '什锦烩蔬菜'][randomIdx++ % 2];
+    list[3].name = ['法兰西经典奶油蘑菇汤', '欧式传统松仁南瓜汤'][randomIdx2++ % 2];
   }
 
 

@@ -1,5 +1,5 @@
-var startDate = new Date('2016-07-18');
-var endDate = new Date('2016-07-23');
+var startDate = new Date('2016-08-01');
+var endDate = new Date('2016-08-07');
 
 var curDate = endDate;
 var url;
@@ -35,6 +35,8 @@ function mark(result) {
   for (var i = 0; i < list.length; i++) {
     //orderId = list[i].wm_order_id_view_str;
     completeTime = list[i].latestDeliveryTime || list[i].order_time;
+    // console.log(list[i])
+    list[i].recipient_name = list[i].recipient_name || '';
     orderMap.push({
       orderTime: list[i].order_time_fmt,
       orderCompleteTime: format('YYYY-MM-DD hh:mm:ss', new Date(completeTime * 1000)),
@@ -240,6 +242,12 @@ var packageMap = {
                       {name: '饮料', price: 5 * 45.8 / 49.7}
                     ]
   },
+  '完美素食主义套餐': [
+    {name: '配汤', price: 8.9 * 26.5 / 29.6},
+    {name: '配菜', price: 7.9 * 26.5 / 29.6},
+    {name: '彩色时蔬', price: 8.9 * 26.5 / 29.6},
+    {name: '米饭', price: 3.9 * 26.5 / 29.6}
+  ],
   '防反帝蓝衣军团一人餐': [
     {name: '欧式传统松仁南瓜汤', price: 11 * 50 / 50},
     {name: '意大利香草烤鸡', price: 22 * 50 / 50},
@@ -285,8 +293,14 @@ function  getAttrsResult (product, tpl) {
     list[2].name = ['清炒西兰花', '彩色时蔬', '什锦烩蔬菜'][randomIdx++ % 3];
     list[3].name = ['屈臣氏香草味苏打水', '怡泉+C柠檬味汽水', '健怡可乐', 'DReena特丽娜果肉饮料'][randomIdx2++ % 4];
   }
+  else if (name.search(/完美素食主义套餐/) != -1) {
+    name = reformName(product.food_name);
+    list = packageMap[name];
+    list[0].name = ['法兰西经典奶油蘑菇汤', '欧式传统松仁南瓜汤'][randomIdx++ % 2];
+    list[1].name = ['清炒西兰花', '什锦烩蔬菜'][randomIdx2++ % 2];
+  }
   else {
-    name = reformName(product.food_name)
+    name = reformName(product.food_name);
     list = packageMap[name];
   }
 
